@@ -249,14 +249,3 @@ if(FORT_ENABLE_ASTYLE)
 endif()
 
 
-# ------------------------------------------------------------------------------
-# Add examples and unit tests to ctest driver.
-# ------------------------------------------------------------------------------
-
-enable_testing()
-list(APPEND ${PROJECT_NAME}_ctests
-    ${${PROJECT_NAME}_tests}
-    ${${PROJECT_NAME}_examples})
-foreach(exe ${${PROJECT_NAME}_ctests})
-    add_test(NAME ${exe} COMMAND ${exe})
-endforeach()
