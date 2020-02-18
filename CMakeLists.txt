@@ -156,8 +156,6 @@ set(FORT_HAVE_UTF8 "${FORT_ENABLE_UTF8}" CACHE STRING "fort option")
 
 add_subdirectory(lib)
 add_subdirectory(src)
-add_subdirectory(tests)
-add_subdirectory(examples)
 
 
 # ------------------------------------------------------------------------------
@@ -167,19 +165,9 @@ add_subdirectory(examples)
 file(GLOB_RECURSE FortHeaders
     "lib/*.h"
     "lib/*.hpp"
-    "tests/*.h"
-    "tests/*.hpp"
     "src/*.h")
 add_custom_target(headers SOURCES ${FortHeaders})
 
-
-# ------------------------------------------------------------------------------
-# Set preprocessor macros for all test builds.
-# ------------------------------------------------------------------------------
-
-target_compile_definitions(${PROJECT_NAME}_test_dev PRIVATE FT_TEST_BUILD=1)
-target_compile_definitions(${PROJECT_NAME}_test_cpp PRIVATE FT_TEST_BUILD=1)
-target_compile_definitions(${PROJECT_NAME}_test PRIVATE FT_TEST_BUILD=1)
 
 # ------------------------------------------------------------------------------
 # Setup text formatting via astyle.
@@ -225,12 +213,7 @@ if(FORT_ENABLE_ASTYLE)
         ${CMAKE_SOURCE_DIR}/src/*.h
         ${CMAKE_SOURCE_DIR}/src/*.hpp
         ${CMAKE_SOURCE_DIR}/src/*.c
-        ${CMAKE_SOURCE_DIR}/tests/*.c
-        ${CMAKE_SOURCE_DIR}/tests/*.h
-        ${CMAKE_SOURCE_DIR}/tests/*.hpp
-        ${CMAKE_SOURCE_DIR}/tests/bb_tests/*.c
-        ${CMAKE_SOURCE_DIR}/tests/wb_tests/*.c
-        ${CMAKE_SOURCE_DIR}/tests/bb_tests_cpp/*.cpp
+      
     )
 
     if(NOT WIN32 STREQUAL "1")
